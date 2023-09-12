@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<robot name="spbot" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<gazebo>
+<plugin filename="libgazebo_ros_diff_drive.so" name="diff_drive">
+			<!-- Set control loop update rate -->
+			<updateRate>100</updateRate>
+				
+			<!-- Name of left joint, defaults to `left_joint` -->
+			<leftJoint>left_wheel_joint</leftJoint>
+
+			<!-- Name of right joint, defaults to `right_joint` -->
+			<rightJoint>right_wheel_joint</rightJoint>
+
+			<publish_rate>10</publish_rate>
+
+			<!-- The distance from the center of one wheel to the other, in meters, defaults to 0.34 m -->
+			<wheelSeparation>0.55</wheelSeparation>
+
+			<!-- Diameter of the wheels, in meters, defaults to 0.15 m -->
+			<wheelDiameter>0.15</wheelDiameter>
+
+			<!-- Topics -->
+			<commandTopic>cmd_vel</commandTopic>
+			<odometryTopic>odom</odometryTopic>
+
+			<!-- Set if odom required -->
+			<publishOdom>true</publishOdom>
+			<publishOdomTF>true</publishOdomTF>
+
+			<publishTF>true</publishTF>
+
+			<!-- Frame IDs -->
+			<odometryFrame>odom</odometryFrame>
+			<robotBaseFrame>base_link</robotBaseFrame>
+
+			<odometrySource>world</odometrySource>
+
+			<!-- Set odom covariance -->
+			<covariance_x>0.0001</covariance_x>
+			<covariance_y>0.0001</covariance_y>
+			<covariance_z>0.0001</covariance_z>
+		</plugin>
+	</gazebo>
+
+	
+	<gazebo reference="laser_link_1">
+		<sensor name="front_rplidar" type="ray">
+			<always_on>true</always_on>
+			<visualize>true</visualize>
+			<pose>0 0 5.016 0 0 0</pose>
+			<update_rate>100</update_rate>
+			<ray>
+			  <scan>
+				<horizontal>
+				  <samples>360</samples>
+				  <resolution>1.000000</resolution>
+				  <min_angle>1.0835</min_angle>
+				  <max_angle>-1.0875</max_angle>
+				</horizontal>
+			  </scan>
+			  <range>
+				<min>0.07</min>
+				<max>1000</max>
+				<resolution>0.015000</resolution>
+			  </range>
+			  <noise>
+				<type>gaussian</type>
+				<mean>0.0</mean>
+				<stddev>0.01</stddev>
+			  </noise>
+			</ray>
+			<plugin name="gazebo_ros_front_rplidar_controller" filename="libgazebo_ros_laser.so">
+				<topicName>/scan</topicName>
+				<frameName>laser_link_1</frameName>
+			</plugin>
+		  </sensor>
+	</gazebo>
+</robot>

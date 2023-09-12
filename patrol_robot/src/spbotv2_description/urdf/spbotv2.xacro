@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<robot name="spbotv2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find spbotv2_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find spbotv2_description)/urdf/spbotv2.trans" />
+<xacro:include filename="$(find spbotv2_description)/urdf/spbotv2.gazebo" />
+<xacro:include filename="$(find spbotv2_description)/urdf/spbotv2_plugins.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.008545661113392524 9.899767343428932e-16 0.10374470940385117" rpy="0 0 0"/>
+    <mass value="32.30895086961894"/>
+    <inertia ixx="0.839298" iyy="0.876157" izz="1.420956" ixy="-0.0" iyz="-0.0" ixz="-0.00404"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="-1.9349403057843463e-09 0.05897005226620178 -2.498001805406602e-16" rpy="0 0 0"/>
+    <mass value="5.516794639794937"/>
+    <inertia ixx="0.008273" iyy="0.014696" izz="0.008273" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 -0.2 -0.075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 -0.2 -0.075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="-3.206884117709069e-14 -0.05897378193492725 6.938893903907228e-17" rpy="0 0 0"/>
+    <mass value="5.5368447802418"/>
+    <inertia ixx="0.008331" iyy="0.014799" izz="0.008331" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.0 0.2 -0.075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.0 0.2 -0.075" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="laser_link_1">
+  <inertial>
+    <origin xyz="0.01100000000000001 1.4193171908044235e-16 0.022500000000000006" rpy="0 0 0"/>
+    <mass value="2.774419012201485"/>
+    <inertia ixx="0.002202" iyy="0.002202" izz="0.003468" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.2 -0.0 -0.1" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.2 -0.0 -0.1" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://spbotv2_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="imu_link">
+</link>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="0.0 0.2 0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="-0.0 1.0 -0.0"/>
+</joint>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="0.0 -0.2 0.075" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="laser_link_joint" type="fixed">
+  <origin xyz="0.2 0.0 0.12" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="laser_link_1"/>
+</joint>
+
+<joint name="imu_link_joint" type="fixed">
+  <origin xyz="0.2 0.0 0.12" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+</joint>
+
+</robot>
