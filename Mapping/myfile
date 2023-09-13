@@ -1,0 +1,25 @@
+<robot name="test_robot">
+  <link name="base_link" />
+  <link name="left_wheel" />
+  <link name="right_wheel" />
+  <link name="laser" />
+
+  <joint name="joint1" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel"/>
+    <origin xyz="0 0.25 0.075" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint2" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel"/>
+    <origin xyz="0 -0.25 0.075" rpy="0 0 0" />
+  </joint>
+
+  <joint name="joint3" type="continuous">
+    <parent link="base_link"/>
+    <child link="laser"/>
+    <origin xyz="0.25 0 0.015" rpy="0 0 0" />
+  </joint>
+</robot>
+
