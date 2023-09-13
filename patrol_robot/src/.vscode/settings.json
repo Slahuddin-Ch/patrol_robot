@@ -1,0 +1,16 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/androbotics/astra_ws/devel/lib/python3/dist-packages",
+        "/home/androbotics/depth_ws/devel/lib/python3/dist-packages",
+        "/home/androbotics/spbot_ws/devel/lib/python3/dist-packages",
+        "/home/androbotics/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/androbotics/astra_ws/devel/lib/python3/dist-packages",
+        "/home/androbotics/depth_ws/devel/lib/python3/dist-packages",
+        "/home/androbotics/spbot_ws/devel/lib/python3/dist-packages",
+        "/home/androbotics/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}

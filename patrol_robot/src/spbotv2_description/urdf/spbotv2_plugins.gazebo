@@ -47,7 +47,7 @@
 	<gazebo reference="laser_link_1">
 		<sensor name="front_rplidar" type="ray">
 			<always_on>true</always_on>
-			<visualize>true</visualize>
+			<visualize>false</visualize>
 			<pose>0 0 5.016 0 0 0</pose>
 			<update_rate>100</update_rate>
 			<ray>
