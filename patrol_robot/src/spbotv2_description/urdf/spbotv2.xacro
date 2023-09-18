@@ -5,6 +5,10 @@
 <xacro:include filename="$(find spbotv2_description)/urdf/spbotv2.trans" />
 <xacro:include filename="$(find spbotv2_description)/urdf/spbotv2.gazebo" />
 <xacro:include filename="$(find spbotv2_description)/urdf/spbotv2_plugins.gazebo" />
+
+<xacro:arg      name="kinect_enabled"             default="true" />
+<xacro:arg      name="camera_enabled"             default="true" />
+
 <link name="base_link">
   <inertial>
     <origin xyz="0.008545661113392524 9.899767343428932e-16 0.10374470940385117" rpy="0 0 0"/>
@@ -89,6 +93,54 @@
   </collision>
 </link>
 
+<xacro:if value="$(arg camera_enabled)">
+ <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.05 0.05"/> 
+        </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+    <box size="0.05 0.05 0.05"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+</xacro:if>
+  
+<xacro:if value="$(arg kinect_enabled)">
+	<link name="kinect_camera">
+		<collision>
+		  <origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+			<box size="0.07 0.3 0.09"/>
+		</geometry>
+		</collision>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+		<geometry>
+		<mesh filename="file://$(find mr_robot_description)/meshes/kinect/d415.dae"/>
+		</geometry>
+		<material name="black"/>
+		</visual>
+		<inertial>
+			<mass value="0.01"/>
+      <inertia ixx="${0.01 / 12.0 * (0.09*0.09 + 0.3*0.3)}" ixy="0.0" ixz="0.0" iyy="${0.01 / 12.0 * (0.07*0.07 + 0.3*0.3)}" iyz="0.0" izz="${0.01 / 12.0 * (0.07*0.07 + 0.3*0.3)}"/>
+		</inertial>
+	</link>
+	
+</xacro:if>
+
 <link name="imu_link">
 </link>
 
@@ -116,6 +168,18 @@
   <origin xyz="0.2 0.0 0.12" rpy="0 0 0"/>
   <parent link="base_link"/>
   <child link="imu_link"/>
+</joint>
+
+<joint name="camera_joint" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0967 -0.001759 0.163682"/>
+  <parent link="base_link"/>
+  <child link="camera_link"/>
+</joint> 
+
+<joint name="kinect_camera_joint" type="fixed">
+   <origin rpy="0 0 0" xyz="0.15 -0.001759 0.073682"/>
+   <parent link="base_link"/>
+   <child link="kinect_camera"/>
 </joint>
 
 </robot>
