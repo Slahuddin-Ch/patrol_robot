@@ -1,0 +1,3 @@
+int8 command  // 0 for stop, 1 for start, 2 for pause
+---
+bool success  // True if operation successful
