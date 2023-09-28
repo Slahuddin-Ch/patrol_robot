@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="spbotv2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="mr_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 <xacro:include filename="$(find spbotv2_description)/urdf/materials.xacro" />
 <xacro:include filename="$(find spbotv2_description)/urdf/spbotv2.trans" />
@@ -7,91 +7,100 @@
 <xacro:include filename="$(find spbotv2_description)/urdf/spbotv2_plugins.gazebo" />
 
 <xacro:arg      name="kinect_enabled"             default="true" />
+<xacro:arg      name="lidar_enabled"              default="true" />
 <xacro:arg      name="camera_enabled"             default="true" />
 
 <link name="base_link">
   <inertial>
-    <origin xyz="0.008545661113392524 9.899767343428932e-16 0.10374470940385117" rpy="0 0 0"/>
-    <mass value="32.30895086961894"/>
-    <inertia ixx="0.839298" iyy="0.876157" izz="1.420956" ixy="-0.0" iyz="-0.0" ixz="-0.00404"/>
+    <origin rpy="0 0 0" xyz="-0.00101458512283434 -0.0007739653318165107 0.06722998744578039"/>
+    <mass value="11.545387094155112"/>
+    <inertia ixx="0.101768" ixy="-1.2e-05" ixz="0.000834" iyy="0.108037" iyz="4.2e-05" izz="0.192707"/>
   </inertial>
   <visual>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <geometry>
       <mesh filename="package://spbotv2_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <geometry>
       <mesh filename="package://spbotv2_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
-<link name="left_wheel_1">
+<link name="r_tyre_1">
   <inertial>
-    <origin xyz="-1.9349403057843463e-09 0.05897005226620178 -2.498001805406602e-16" rpy="0 0 0"/>
-    <mass value="5.516794639794937"/>
-    <inertia ixx="0.008273" iyy="0.014696" izz="0.008273" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+    <origin rpy="0 0 0" xyz="9.682659047986764e-08 -0.002525549104224978 -5.1894622932202594e-08"/>
+    <mass value="1.4397484276442625"/>
+    <inertia ixx="0.00144" ixy="-0.0" ixz="-0.0" iyy="0.00246" iyz="0.0" izz="0.00144"/>
   </inertial>
   <visual>
-    <origin xyz="0.0 -0.2 -0.075" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.003445 0.10058 -0.052283"/>
     <geometry>
-      <mesh filename="package://spbotv2_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://spbotv2_description/meshes/r_tyre_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="0.0 -0.2 -0.075" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.003445 0.10058 -0.052283"/>
     <geometry>
-      <mesh filename="package://spbotv2_description/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://spbotv2_description/meshes/r_tyre_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
-<link name="right_wheel_1">
+<link name="l_tyre_1">
   <inertial>
-    <origin xyz="-3.206884117709069e-14 -0.05897378193492725 6.938893903907228e-17" rpy="0 0 0"/>
-    <mass value="5.5368447802418"/>
-    <inertia ixx="0.008331" iyy="0.014799" izz="0.008331" ixy="-0.0" iyz="-0.0" ixz="0.0"/>
+    <origin rpy="0 0 0" xyz="9.682664276963737e-08 0.0025262758714060807 -5.18946233832307e-08"/>
+    <mass value="1.4397484276442625"/>
+    <inertia ixx="0.00144" ixy="-0.0" ixz="0.0" iyy="0.00246" iyz="-0.0" izz="0.00144"/>
   </inertial>
   <visual>
-    <origin xyz="-0.0 0.2 -0.075" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.003445 -0.09882 -0.052283"/>
     <geometry>
-      <mesh filename="package://spbotv2_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://spbotv2_description/meshes/l_tyre_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.0 0.2 -0.075" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0.003445 -0.09882 -0.052283"/>
     <geometry>
-      <mesh filename="package://spbotv2_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://spbotv2_description/meshes/l_tyre_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
 
-<link name="laser_link_1">
+<xacro:if value="$(arg lidar_enabled)">
+<link name="lidar_1">
   <inertial>
-    <origin xyz="0.01100000000000001 1.4193171908044235e-16 0.022500000000000006" rpy="0 0 0"/>
-    <mass value="2.774419012201485"/>
-    <inertia ixx="0.002202" iyy="0.002202" izz="0.003468" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+    <origin rpy="0 0 0" xyz="-0.006349391522619652 0.0008793633835904074 -0.002389798737942095"/>
+    <mass value="1.1515616542314233"/>
+    <inertia ixx="0.000489" ixy="-0.0" ixz="-0.000148" iyy="0.000861" iyz="0.0" izz="0.000987"/>
   </inertial>
   <visual>
-    <origin xyz="-0.2 -0.0 -0.1" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.0967 0.001759 -0.108682"/>
     <geometry>
-      <mesh filename="package://spbotv2_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://spbotv2_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
-    <origin xyz="-0.2 -0.0 -0.1" rpy="0 0 0"/>
+    <origin rpy="0 0 0" xyz="-0.0967 0.001759 -0.108682"/>
     <geometry>
-      <mesh filename="package://spbotv2_description/meshes/laser_link_1.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://spbotv2_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
+  
+  <joint name="lidar_fixed" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0967 -0.001759 0.108682"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+</xacro:if>
 
 <xacro:if value="$(arg camera_enabled)">
  <link name="camera_link">
@@ -116,8 +125,15 @@
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
     </inertial>
   </link>
-</xacro:if>
+
+  <joint name="camera_joint" type="fixed">
   
+  <origin rpy="0 0 0" xyz="0.0967 -0.001759 0.163682"/>
+  <parent link="base_link"/>
+  <child link="camera_link"/>
+</joint> 
+</xacro:if>
+
 <xacro:if value="$(arg kinect_enabled)">
 	<link name="kinect_camera">
 		<collision>
@@ -128,7 +144,9 @@
 		</collision>
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
-
+		<geometry>
+		<mesh filename="file://$(find spbotv2_description)/meshes/kinect/d415.dae"/>
+		</geometry>
 		<material name="black"/>
 		</visual>
 		<inertial>
@@ -136,48 +154,28 @@
       <inertia ixx="${0.01 / 12.0 * (0.09*0.09 + 0.3*0.3)}" ixy="0.0" ixz="0.0" iyy="${0.01 / 12.0 * (0.07*0.07 + 0.3*0.3)}" iyz="0.0" izz="${0.01 / 12.0 * (0.07*0.07 + 0.3*0.3)}"/>
 		</inertial>
 	</link>
-	
+
+	<joint name="kinect_camera_joint" type="fixed">
+			<origin rpy="0 0 0" xyz="0.15 -0.001759 0.073682"/>
+			<parent link="base_link"/>
+			<child link="kinect_camera"/>
+	</joint>
 </xacro:if>
 
-<link name="imu_link">
-</link>
-
-<joint name="left_wheel_joint" type="continuous">
-  <origin xyz="0.0 0.2 0.075" rpy="0 0 0"/>
+<joint name="right_motor_joint" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.003445 -0.10058 0.052283"/>
   <parent link="base_link"/>
-  <child link="left_wheel_1"/>
+  <child link="r_tyre_1"/>
   <axis xyz="-0.0 1.0 -0.0"/>
 </joint>
 
-<joint name="right_wheel_joint" type="continuous">
-  <origin xyz="0.0 -0.2 0.075" rpy="0 0 0"/>
+<joint name="left_motor_joint" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.003445 0.09882 0.052283"/>
   <parent link="base_link"/>
-  <child link="right_wheel_1"/>
+  <child link="l_tyre_1"/>
   <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
-<joint name="laser_link_joint" type="fixed">
-  <origin xyz="0.2 0.0 0.12" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="laser_link_1"/>
-</joint>
 
-<joint name="imu_link_joint" type="fixed">
-  <origin xyz="0.2 0.0 0.12" rpy="0 0 0"/>
-  <parent link="base_link"/>
-  <child link="imu_link"/>
-</joint>
-
-<joint name="camera_joint" type="fixed">
-  <origin rpy="0 0 0" xyz="0.0967 -0.001759 0.163682"/>
-  <parent link="base_link"/>
-  <child link="camera_link"/>
-</joint> 
-
-<joint name="kinect_camera_joint" type="fixed">
-   <origin rpy="0 0 0" xyz="0.15 -0.001759 0.073682"/>
-   <parent link="base_link"/>
-   <child link="kinect_camera"/>
-</joint>
 
 </robot>
