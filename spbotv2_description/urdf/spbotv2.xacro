@@ -128,9 +128,7 @@
 		</collision>
 		<visual>
 			<origin xyz="0 0 0" rpy="0 0 0" />
-		<geometry>
-		<mesh filename="file://$(find mr_robot_description)/meshes/kinect/d415.dae"/>
-		</geometry>
+
 		<material name="black"/>
 		</visual>
 		<inertial>

@@ -42,6 +42,15 @@
 			<covariance_z>0.0001</covariance_z>
 		</plugin>
 	</gazebo>
+	
+	<gazebo>
+         <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+          <gazebo_ros_control>
+           <emergency_stop_topic>emergency_stop</emergency_stop_topic>
+          </gazebo_ros_control>
+         </plugin>
+        </gazebo>
+
 
 	
 	<gazebo reference="laser_link_1">
