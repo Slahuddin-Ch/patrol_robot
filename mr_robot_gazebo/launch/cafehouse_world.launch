@@ -12,7 +12,7 @@
     <arg name="debug" value="false"/>
   </include>
 
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find mr_robot_description)/urdf/mr_robot.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find spbotv2_description)/urdf/spbotv2.xacro" />
 
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model mr_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
 </launch>
