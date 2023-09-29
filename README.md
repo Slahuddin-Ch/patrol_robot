@@ -35,3 +35,8 @@ Steps to launch Robot gazebo world :
 Other commands to check the topic which are working type rostopic list and to check a specific topic run command rostopic echo "topic name"
 
 To check the nodes working type rosnode list and to check the specific node write rosnode info "node name" 
+
+
+FOR WEBSOCKET ROS BRIDGE YOU HAVE TO LAUNCH THE NODE WITH COMMAND :  rosrun websocket_ros_bridge websocket_ros_bridge_node.py
+
+AND FOR SERVER YOU HAVE TO LAUNCH THE COMMAND : python -m http.server
