@@ -1,42 +1,108 @@
-Patrol_Robot 
 
-Various packages used : 
-Gazebo
-Rviz
-Teleop_twist_keyboard
+# Patrol_Robot
 
-Installing different packages before going to build workspace 
-Teleop_twist_keyboard command : sudo apt-get install ros-noetic-teleop-twist-keyboard
-Mapping command: sudo apt-get install ros-noetic-slam-gmapping
-Gazebo command : sudo apt-get install ros-noetic-gazebo-ros
+## Overview
+This project contains various packages and configurations to simulate and control a patrol robot.
 
-Steps to launch Robot gazebo world :
+## Packages Used
+- Gazebo
+- Rviz
+- Teleop_twist_keyboard
 
-1)We have to create a ros workspace with the command : mkdir -p ~/catkin_ws/src
+## Pre-requisites
+Before building the workspace, ensure the following packages are installed:
 
-2)Then we have to build the workspace using command : catkin_make
+- Teleop_twist_keyboard: 
+  ```bash
+  sudo apt-get install ros-noetic-teleop-twist-keyboard
+  ```
+- Mapping: 
+  ```bash
+  sudo apt-get install ros-noetic-slam-gmapping
+  ```
+- Gazebo: 
+  ```bash
+  sudo apt-get install ros-noetic-gazebo-ros
+  ```
 
-3)Then we have to clone the github repository in the src folder using command git clone "repo ssh" .
+## Setup and Launch
+1. Create a ROS workspace:
+   ```bash
+   mkdir -p ~/catkin_ws/src
+   ```
 
-4)Then we have to go to our workspace again by using command cd .. and again do catkin_make to built other package and files .
+2. Build the workspace:
+   ```bash
+   catkin_make
+   ```
 
-5)Then we have to source our workspace using command : source ~/catkin_ws/devel/setup.bash
+3. Clone the GitHub repository in the `src` folder:
+   ```bash
+   git clone [REPO_SSH]
+   ```
 
-6)To launch the gazebo world we have to give command : roslaunch mr_robot_gazebo sp_bot_sim.launch
+4. Navigate back to the workspace and build again:
+   ```bash
+   cd ..
+   catkin_make
+   ```
 
-7)To see the camera images and laserscan , i have saved the config file of the rviz in the package itself so we don't need to run anything rather than that we have to go on the up left side "file" menu and then "open config" and then we have to run "robot.rviz" config file . So our camera and laserscan both will run easily then we can see the image and laserscan both.
+5. Source the workspace:
+   ```bash
+   source ~/catkin_ws/devel/setup.bash
+   ```
 
-8)Then for controlling the robot using keyboard command : rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+6. Launch the Gazebo world:
+   ```bash
+   roslaunch mr_robot_gazebo sp_bot_sim.launch
+   ```
 
-9)Then using the I,< for front and back and j,l for left and right .
- 
-10)For mapping use command: rosrun gmapping slam_gmapping scan:=/scan
+7. To view camera images and laser scans in Rviz:
+   - Open Rviz.
+   - Navigate to the top-left "File" menu.
+   - Select "Open Config".
+   - Choose the "robot.rviz" config file.
 
-Other commands to check the topic which are working type rostopic list and to check a specific topic run command rostopic echo "topic name"
+8. Control the robot using keyboard commands:
+   ```bash
+   rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+   ```
+   - Use `I`, `<` for forward and backward.
+   - Use `J`, `L` for left and right.
 
-To check the nodes working type rosnode list and to check the specific node write rosnode info "node name" 
+9. For mapping:
+   ```bash
+   rosrun gmapping slam_gmapping scan:=/scan
+   ```
 
+## ROS Utilities
+- To check active topics:
+  ```bash
+  rostopic list
+  ```
 
-FOR WEBSOCKET ROS BRIDGE YOU HAVE TO LAUNCH THE NODE WITH COMMAND :  rosrun websocket_ros_bridge websocket_ros_bridge_node.py
+- To inspect a specific topic:
+  ```bash
+  rostopic echo [TOPIC_NAME]
+  ```
 
-AND FOR SERVER YOU HAVE TO LAUNCH THE COMMAND : python -m http.server
+- To check active nodes:
+  ```bash
+  rosnode list
+  ```
+
+- To inspect a specific node:
+  ```bash
+  rosnode info [NODE_NAME]
+  ```
+
+## WebSocket ROS Bridge
+- Launch the node:
+  ```bash
+  rosrun websocket_ros_bridge websocket_ros_bridge_node.py
+  ```
+
+- Launch the server:
+  ```bash
+  python -m http.server
+  ```
