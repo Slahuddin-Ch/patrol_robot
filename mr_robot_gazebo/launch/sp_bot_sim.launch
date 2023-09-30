@@ -1,12 +1,13 @@
 <launch>
+  <!-- Define initial position arguments for the robot -->
   <arg name="x_pos" default="-3.0"/>
   <arg name="y_pos" default="1.0"/>
   <arg name="z_pos" default="0.0"/>
 
-  <!--This sets robot_description param, launches rviz, 
-  robot_state_publisher and joint_state_publisher-->
+  <!-- Set the robot_description parameter, and launch visualization tools (RViz, robot_state_publisher, joint_state_publisher) -->
   <include file="$(find spbotv2_description)/launch/display.launch" />
 
+  <!-- Start Gazebo with the specified world and the necessary ROS plugins -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find mr_robot_gazebo)/worlds/turtlebot3_house.world"/>
     <arg name="paused" value="false"/>
@@ -16,5 +17,7 @@
     <arg name="debug" value="false"/>
   </include>
 
+  <!-- Spawn the robot model into the Gazebo simulation at the specified position -->
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model mr_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
 </launch>
+
