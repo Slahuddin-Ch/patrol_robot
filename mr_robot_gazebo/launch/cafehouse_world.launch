@@ -2,6 +2,14 @@
   <arg name="x_pos" default="-3.0"/>
   <arg name="y_pos" default="1.0"/>
   <arg name="z_pos" default="0.0"/>
+  <arg name="camera_enabled" default="true"/>
+  <arg name="lidar_enabled" default="true"/>
+  <arg name="kinect_enabled" default="true"/>
+
+  
+<!--This sets robot_description param, launches rviz, 
+  robot_state_publisher and joint_state_publisher-->
+  <include file="$(find spbotv2_description)/launch/display.launch" />
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find mr_robot_gazebo)/worlds/cafe_house.world"/>
@@ -12,7 +20,7 @@
     <arg name="debug" value="false"/>
   </include>
 
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find mr_robot_description)/urdf/mr_robot.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find spbotv2_description)/urdf/spbotv2.xacro" />
 
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model mr_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description" />
 </launch>
