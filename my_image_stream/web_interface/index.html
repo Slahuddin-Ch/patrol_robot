@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ROS Image Stream</title>
+</head>
+<body>
+    <h1>ROS Image Stream</h1>
+    <img id="image-stream" src="" alt="Image Stream">
+    <script>
+        const imageElement = document.getElementById('image-stream');
+        const rosImageTopic = new ROSLIB.Topic({
+            ros: new ROSLIB.Ros({
+                url: 'ws://localhost:9090' 
+            }),
+            name: '/image_stream',
+            messageType: 'sensor_msgs/Image'
+        });
+
+        rosImageTopic.subscribe(function (message) {
+            const imageData = message.data;
+            const width = message.width;
+            const height = message.height;
+
+         
+            const blob = new Blob([new Uint8Array(imageData)], { type: 'image/png' });
+
+
+            const imageUrl = URL.createObjectURL(blob);
+            imageElement.src = imageUrl;
+        });
+    </script>
+</body>
+</html>
+
