@@ -2,11 +2,18 @@
   <arg name="x_pos" default="-3.0"/>
   <arg name="y_pos" default="1.0"/>
   <arg name="z_pos" default="0.0"/>
+<<<<<<< HEAD
   
 <!--This sets robot_description param, launches rviz, 
   robot_state_publisher and joint_state_publisher-->
   <include file="$(find spbotv2_description)/launch/display.launch" />
   
+=======
+  <arg name="camera_enabled" default="true"/>
+  <arg name="lidar_enabled" default="true"/>
+  <arg name="kinect_enabled" default="true"/>
+
+>>>>>>> 42b3051fe599fedaa2fa3763563c7648f2beebdc
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find mr_robot_gazebo)/worlds/cafe_house.world"/>
     <arg name="paused" value="false"/>
