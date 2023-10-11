@@ -1,4 +1,14 @@
+/**
+ * @file controller.cpp
+ * @brief Implementation of the Controller class for ROS-based robot control.
+ */
+
 #include "controller/controller.hpp"
+
+/**
+ * @brief Constructor for the Controller class.
+ * @param nh A ROS NodeHandle to initialize the ROS communication.
+ */
 
 Controller::Controller(ros::NodeHandle nh){
     control_service = nh.advertiseService("/control", &Controller::control_cb, this);
@@ -6,7 +16,18 @@ Controller::Controller(ros::NodeHandle nh){
     cmd_publisher = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 }
 
+/**
+ * @brief Destructor for the Controller class.
+ */
+
 Controller::~Controller(){};
+
+/**
+ * @brief Callback function for handling control service requests.
+ * @param req Request object containing control mode and action.
+ * @param res Response object to provide a result.
+ * @return True if the service call was successful.
+ */
 
 bool Controller::control_cb(controller_msgs::Control::Request &req,
                 controller_msgs::ControlResponse &res)
@@ -40,6 +61,11 @@ bool Controller::control_cb(controller_msgs::Control::Request &req,
     }
     return true;
 }
+
+/**
+ * @brief Callback function for processing incoming command velocity messages.
+ * @param cmd A pointer to the received Twist message.
+ */
 
 void Controller::cmd_vel_cb(const geometry_msgs::Twist::ConstPtr& cmd){
     if (teleop_enabled && !emergency_stop){
