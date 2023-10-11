@@ -1,5 +1,7 @@
-> Steps to use Web Teleop
-1. roslaunch mr_robot_gazebo cafehouse_world.launch
-2. rosrun controller controller
-3. Open Patrol Control Panel in web and start teleop.
-4. Remember to click the "Enable Teleop" button
+This controller node is responsible for
+
+1. Receiving the command velocity from topic /input/cmd_vel and republish it to topic /cmd_vel
+2. getting other commands such as enable/disable teleop and emergency.
+
+To run this code and also all the necessary packages required for Remote Teleop using web
+run this one command -> roslaunch controller teleop.launch
