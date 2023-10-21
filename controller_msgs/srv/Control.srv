@@ -1,0 +1,12 @@
+#Modes
+uint8 ESTOP = 0
+uint8 TELEOP = 1
+
+#Actions
+uint8 DISABLE = 0
+uint8 ENABLE = 1
+
+uint8 mode
+uint8 action
+---
+bool result

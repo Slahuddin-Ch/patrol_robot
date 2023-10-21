@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find controller)/launch/rosbridge_websocket.launch" />
+    <include file="$(find controller)/launch/web_video_server.launch" />
+    <include file="$(find controller)/launch/webrtc_ros.launch" />
+    <node name="controller" pkg="controller" type="controller" output="screen" />
+</launch>
